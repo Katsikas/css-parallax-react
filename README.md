@@ -36,3 +36,7 @@ React is used as a structural layer to:
 - Intersection Observer–based effects
 - Enhanced scroll performance tuning
 - Content and interaction layers
+
+# css-parallax-react
+
+A visual landing page built with React, focusing primarily on advanced CSS parallax and scroll-based effects.
