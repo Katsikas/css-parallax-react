@@ -1,9 +1,31 @@
+import { useEffect, useRef, useState } from "react";
+
 const SectionTwo = () => {
+  const imgRef = useRef();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+        observer.unobserve(entry.target);
+      }
+    });
+
+    if (!imgRef.current) return;
+
+    observer.observe(imgRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="section-two">
       <div className="inner-con">
         <div className="inner-left">
           <img
+            ref={imgRef}
+            className={`hawaii ${visible ? "appear" : ""}`}
             src="hawaii.webp"
             height={720}
             width={480}

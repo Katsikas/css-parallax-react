@@ -83,12 +83,26 @@ p {
 .section-one .inner-con .inner-left .left {
   margin-bottom: 3em;
   border-radius: 25% 8px 8px 8px;
+  transform: translateY(-4em);
+  opacity: 0.5;
 }
+
+.section-one .inner-con .inner-left .left.slidefrombottom {
+  animation: slidefrombottom 700ms cubic-bezier(0, 0.87, 0.58, 1) forwards;
+  animation-delay: 150ms;
+}
+
 .section-one .inner-con .inner-left .right {
   margin-top: 3em;
   border-radius: 8px 25% 8px 8px;
+  transform: translateY(4em);
+  opacity: 0.5;
 }
 
+.section-one .inner-con .inner-left .right.slidefromtop {
+  animation: slidefromtop 700ms cubic-bezier(0, 0.87, 0.58, 1) forwards;
+  animation-delay: 150ms;
+}
 .inner-con .inner-right {
   display: flex;
   flex-direction: column;
@@ -104,6 +118,12 @@ p {
 .section-one .inner-con .inner-right .pov-board {
   outline: 2px solid #fff;
   border-radius: 40% 40% 8px 8px;
+  clip-path: circle(20% at 0 0);
+}
+
+.section-one .inner-con .inner-right .pov-board.spotlight {
+  animation: spotlight 2s cubic-bezier(0.69, 0.13, 0, 0.95) forwards;
+  animation-delay: 150ms;
 }
 
 .section-two {
@@ -113,9 +133,14 @@ p {
   background-image: radial-gradient(at top center, #ffd8b8b3 0%, #f6f0ee 45%);
 }
 
-.section-two .inner-con .inner-left img {
+.section-two .inner-con .inner-left .hawaii {
   border-radius: 20% 20% 22px 22px;
   box-shadow: 2px 0px 10px 0px hsl(15, 30.77%, 80%);
+  clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%);
+}
+.section-two .inner-con .inner-left .hawaii.appear {
+  animation: appear 2s ease forwards;
+  animation-delay: 200ms;
 }
 
 .section-three {
@@ -131,9 +156,15 @@ p {
   animation-timeline: view(70% 5%);
 }
 
-.section-three .con-inner h1 {
+.section-three .con-inner .title {
   color: #222021;
   font-size: 5em;
+  transform: translateY(-1em);
+  opacity: 0;
+}
+.section-three .con-inner .title.fadein {
+  animation: fadein 1s ease-in forwards;
+  animation-delay: 200ms;
 }
 
 .section-three .con-inner .tiki {
@@ -291,6 +322,55 @@ p {
   display: flex;
   flex-direction: column;
   background-color: #f6f0ee;
+  clip-path: circle(0%);
+  padding: 4vh;
+  overflow: hidden;
+}
+
+.section-seven .con-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+}
+
+.section-seven .con-inner .top-con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 2em;
+  background-color: #213547;
+  border-radius: 22px;
+}
+.section-seven .con-inner .top-con h1 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  transition-delay: 1s;
+}
+
+.section-seven.circle .top-con h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-seven .con-inner .top-con img {
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-seven .con-inner .bottom-con img {
+  border-radius: 1em;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 75%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
 }
 
 .circle {
@@ -324,6 +404,27 @@ p {
   }
 }
 
+@keyframes slidefromtop {
+  0% {
+    transform: translateY(4em);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slidefrombottom {
+  0% {
+    transform: translateY(-4em);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @keyframes polygon {
   0% {
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
@@ -342,5 +443,43 @@ p {
   }
   100% {
     clip-path: circle(100%);
+  }
+}
+
+@keyframes spotlight {
+  0% {
+    clip-path: circle(20% at 0 0);
+  }
+  50% {
+    clip-path: circle(20% at center);
+  }
+  75% {
+    clip-path: circle(75%);
+  }
+  100% {
+    clip-path: circle(100%);
+  }
+}
+
+@keyframes appear {
+  0% {
+    clip-path: polygon(68% 0, 100% 0%, 100% 100%, 100% 100%);
+  }
+  50% {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 86% 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes fadein {
+  0% {
+    transform: translateY(-1em);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
