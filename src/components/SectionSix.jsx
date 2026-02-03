@@ -1,36 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useMultiReveal } from "../hooks/useMultiReveal";
 
 const SectionSix = () => {
-  const img1Ref = useRef();
-  const img2Ref = useRef();
-  const img3Ref = useRef();
-
-  const [visible, setVisible] = useState({
-    img1: false,
-    img2: false,
-    img3: false,
-  });
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setVisible((prev) => ({
-            ...prev,
-            [entry.target.dataset.key]: true,
-          }));
-
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-
-    observer.observe(img1Ref.current);
-    observer.observe(img2Ref.current);
-    observer.observe(img3Ref.current);
-
-    return () => observer.disconnect();
-  }, []);
+  const { visible, register } = useMultiReveal(["img1", "img2", "img3"]);
 
   return (
     <div className="section-six">
@@ -38,20 +9,22 @@ const SectionSix = () => {
       <div className="con-inner">
         <div className="left">
           <img
-            ref={img1Ref}
-            data-key="img1"
+            ref={register("img1")}
+            data-reveal="img1"
             className={visible.img1 ? "left-img circle" : "left-img"}
             src="sea.webp"
             height={480}
             width={250}
+            alt="sea landscape with two surfers"
           />
           <img
-            ref={img2Ref}
-            data-key="img2"
+            ref={register("img2")}
+            data-reveal="img2"
             className={visible.img2 ? "right-img circle" : "right-img"}
             src="sam.webp"
             height={480}
             width={250}
+            alt="surfers paddling"
           />
         </div>
         <div className="right light">
@@ -77,12 +50,13 @@ const SectionSix = () => {
         </div>
         <div className="left">
           <img
-            ref={img3Ref}
-            data-key="img3"
+            ref={register("img3")}
+            data-reveal="img3"
             className={visible.img3 ? "whave-img circle" : "whave-img"}
             src="whave_surf.webp"
             height={480}
             width={560}
+            alt="surfer riding whave"
           />
         </div>
       </div>
