@@ -1,23 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useReveal } from "../hooks/useReveal";
 
 const SectionSeven = () => {
-  const ref = useRef();
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-        observer.unobserve(entry.target);
-      }
-    });
-
-    if (!ref.current) return;
-
-    observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref, visible } = useReveal();
 
   return (
     <div ref={ref} className={`section-seven ${visible ? "circle" : ""}`}>

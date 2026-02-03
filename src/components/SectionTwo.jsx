@@ -1,30 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useReveal } from "../hooks/useReveal";
 
 const SectionTwo = () => {
-  const imgRef = useRef();
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-        observer.unobserve(entry.target);
-      }
-    });
-
-    if (!imgRef.current) return;
-
-    observer.observe(imgRef.current);
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref, visible } = useReveal();
 
   return (
     <div className="section-two">
       <div className="inner-con">
         <div className="inner-left">
           <img
-            ref={imgRef}
+            ref={ref}
             className={`hawaii ${visible ? "appear" : ""}`}
             src="hawaii.webp"
             height={720}
