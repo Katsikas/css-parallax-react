@@ -33,7 +33,7 @@ React is used as a structural layer to:
 
 ## Planned Improvements
 
-- Intersection Observer–based effects
+- Hero Section
 - Enhanced scroll performance tuning
 - Content and interaction layers
 
