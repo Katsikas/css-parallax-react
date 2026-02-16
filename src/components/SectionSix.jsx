@@ -6,7 +6,7 @@ const SectionSix = () => {
   return (
     <div className="section-six">
       <h2>Between Sets, Between Selves</h2>
-      <div className="con-inner">
+      <div className="first con-inner">
         <div className="left">
           <img
             ref={register("img1")}
